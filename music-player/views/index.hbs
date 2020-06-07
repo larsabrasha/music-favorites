@@ -1,0 +1,92 @@
+<style>
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    :root {
+        --main-bg-color: coral;
+    }
+
+
+    .items {
+        margin: 0 auto;
+        width: 1400px;
+        font-size: 0;
+        /* remove inline-block white space; see https://stackoverflow.com/a/32801275/3597276 */
+    }
+
+    .item {
+        display: inline-block;
+        font-size: 18px;
+        /* restore font size removed in container */
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        margin: 10px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .item-header {
+        width: initial;
+        height: initial;
+        line-height: initial;
+    }
+
+    @media screen and (max-width: 470px) {
+        .items {
+            width: 220px;
+        }
+    }
+
+    @media screen and (min-width: 461px) and (max-width: 680px) {
+        .items {
+            width: 440px;
+        }
+    }
+
+    @media screen and (min-width: 681px) and (max-width: 900px) {
+        .items {
+            width: 660px;
+        }
+    }
+
+    @media screen and (min-width: 901px) and (max-width: 1120px) {
+        .items {
+            width: 880px;
+        }
+    }
+
+    @media screen and (min-width: 1121px) and (max-width: 1340px) {
+        .items {
+            width: 1100px;
+        }
+    }
+
+    @media screen and (min-width: 1341px) {
+        .items {
+            width: 1320px;
+        }
+    }
+</style>
+
+{{#each albumsSortedByYear}}
+<div class="items sticky-top bg-dark mt-3">
+    <div class="item item-header">
+        <span class="h3">{{this.year}}</span>
+    </div>
+</div>
+<div class="items">
+    {{#albums}}
+    <div class="item" title="{{this.artist}} – {{this.album}}">
+        <img src="{{this.artwork}}" width="200" height="200" class="object-fit-cover shadow rounded" loading="lazy--">
+    </div>
+    {{/albums}}
+</div>
+{{/each}}
